@@ -1,5 +1,5 @@
-local colors = require("saint-adresse.colors").setup({ transform = true })
-local config = require("saint-adresse.config").options
+local colors = require("sainte-adresse.colors").setup({ transform = true })
+local config = require("sainte-adresse.config").options
 
 local saint_adresse = {}
 

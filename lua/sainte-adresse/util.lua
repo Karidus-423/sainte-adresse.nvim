@@ -1,4 +1,4 @@
-local ts = require("saint-adresse.tresitter")
+local ts = require("sainte-adresse.tresitter")
 
 local M = {}
 
@@ -37,7 +37,7 @@ function M.lighten(hex, amount, fg)
 end
 
 function M.invert_color(color)
-	local hsluv = require("saint-adresse.hsluv")
+	local hsluv = require("sainte-adresse.hsluv")
 	if color ~= "NONE" then
 		local hsl = hsluv.hex_to_hsluv(color)
 		hsl[3] = 100 - hsl[3]
@@ -71,7 +71,7 @@ end
 
 ---@param config Config
 function M.autocmds(config)
-	local group = vim.api.nvim_create_augroup("saint-adresse", { clear = true })
+	local group = vim.api.nvim_create_augroup("sainte-adresse", { clear = true })
 
 	vim.api.nvim_create_autocmd("ColorSchemePre", {
 		group = group,
@@ -187,7 +187,7 @@ function M.load(theme)
 	end
 
 	vim.o.termguicolors = true
-	vim.g.colors_name = "saint-adresse"
+	vim.g.colors_name = "sainte-adresse"
 
 	if ts.new_style() then
 		for group, colors in pairs(ts.defaults) do

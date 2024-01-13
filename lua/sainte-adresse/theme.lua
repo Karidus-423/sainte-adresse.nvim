@@ -1,5 +1,5 @@
-local util = require("saint-adresse.util")
-local colors = require("saint-adresse.colors")
+local util = require("sainte-adresse.util")
+local colors = require("sainte-adresse.colors")
 
 local M = {}
 --
