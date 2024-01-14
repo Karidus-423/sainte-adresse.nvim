@@ -23,9 +23,18 @@ function M.load(opts)
 	util.load(theme.setup())
 end
 
-M.setup = config.setup
+function M.setup()
+	vim.o.background = "dark"
 
--- keep for backward compatibility
-M.colorscheme = M.load
+	local styles = {
+		sand = " Sand",
+		sea = " Sea",
+	}
+
+	for style, style_name in pairs(styles) do
+		config.setup({ style = style })
+		local colors = require("sainte-adresse.colors").setup({ transform = true })
+	end
+end
 
 return M
