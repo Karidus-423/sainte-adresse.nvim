@@ -1,5 +1,5 @@
 -- Inpired by Beach of Sainte Adresse by Claude Monet.
-
+-- Carried by MariaSolOs
 -- Reset highlighting.
 vim.cmd.highlight("clear")
 if vim.fn.exists("syntax_on") then
@@ -9,6 +9,7 @@ vim.o.termguicolors = true
 vim.g.colors_name = "sainte-adresse"
 
 local colors = {
+	bg = "#4b4b4b",
 	bright_blue = "#6094d3",
 	bright_cyan = "#b3dcdd",
 	bright_green = "#a5c38d",
