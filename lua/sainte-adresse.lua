@@ -1,3 +1,13 @@
+-- Inpired by Beach of Sainte Adresse by Claude Monet.
+
+-- Reset highlighting.
+vim.cmd.highlight("clear")
+if vim.fn.exists("syntax_on") then
+	vim.cmd.syntax("reset")
+end
+vim.o.termguicolors = true
+vim.g.colors_name = "sainte-adresse"
+
 local colors = {
 	bright_blue = "#6094d3",
 	bright_cyan = "#b3dcdd",
@@ -34,26 +44,24 @@ local colors = {
 }
 
 -- Terminal colors.
-function colors.terminal_color()
-	vim.g.terminal_color_0 = colors.transparent_black
-	vim.g.terminal_color_1 = colors.red
-	vim.g.terminal_color_2 = colors.green
-	vim.g.terminal_color_3 = colors.yellow
-	vim.g.terminal_color_4 = colors.purple
-	vim.g.terminal_color_5 = colors.orange100
-	vim.g.terminal_color_6 = colors.cyan
-	vim.g.terminal_color_7 = colors.white
-	vim.g.terminal_color_8 = colors.selection
-	vim.g.terminal_color_9 = colors.bright_red
-	vim.g.terminal_color_10 = colors.bright_green
-	vim.g.terminal_color_11 = colors.bright_yellow
-	vim.g.terminal_color_12 = colors.bright_blue
-	vim.g.terminal_color_13 = colors.bright_magenta
-	vim.g.terminal_color_14 = colors.bright_cyan
-	vim.g.terminal_color_15 = colors.bright_white
-	vim.g.terminal_color_background = colors.bg
-	vim.g.terminal_color_foreground = colors.fg
-end
+vim.g.terminal_color_0 = colors.transparent_black
+vim.g.terminal_color_1 = colors.red
+vim.g.terminal_color_2 = colors.green
+vim.g.terminal_color_3 = colors.yellow
+vim.g.terminal_color_4 = colors.purple
+vim.g.terminal_color_5 = colors.orange100
+vim.g.terminal_color_6 = colors.cyan
+vim.g.terminal_color_7 = colors.white
+vim.g.terminal_color_8 = colors.selection
+vim.g.terminal_color_9 = colors.bright_red
+vim.g.terminal_color_10 = colors.bright_green
+vim.g.terminal_color_11 = colors.bright_yellow
+vim.g.terminal_color_12 = colors.bright_blue
+vim.g.terminal_color_13 = colors.bright_magenta
+vim.g.terminal_color_14 = colors.bright_cyan
+vim.g.terminal_color_15 = colors.bright_white
+vim.g.terminal_color_background = colors.bg
+vim.g.terminal_color_foreground = colors.fg
 
 -- Groups used for my statusline.
 ---@type table<string, vim.api.keyset.highlight>
@@ -386,30 +394,6 @@ local groups = vim.tbl_extend("error", statusline_groups, {
 	OverseerComponent = { link = "@keyword" },
 })
 
-local load_plugin
-
-local set_hl = function(groups)
-	for group, opts in pairs(groups) do
-		vim.api.nvim_set_hl(0, group, opts)
-	end
+for group, opts in pairs(groups) do
+	vim.api.nvim_set_hl(0, group, opts)
 end
-
-load_plugin = vim.loop.new_async(vim.schedule_wrap(function()
-	colors.terminal_color()
-	set_hl(groups)
-end))
-
-function colors.colorscheme()
-	-- Reset highlighting.
-	vim.cmd.highlight("clear")
-	if vim.fn.exists("syntax_on") then
-		vim.cmd.syntax("reset")
-	end
-	vim.o.termguicolors = true
-	vim.g.colors_name = "sainte-adresse"
-	load_plugin:send()
-end
-
-colors.colorscheme()
-
-return colors
