@@ -1,5 +1,3 @@
--- Inpired by Beach of Sainte Adresse by Claude Monet.
-
 -- Reset highlighting.
 vim.cmd.highlight("clear")
 if vim.fn.exists("syntax_on") then
@@ -394,26 +392,6 @@ local groups = vim.tbl_extend("error", statusline_groups, {
 	OverseerComponent = { link = "@keyword" },
 })
 
-local async_load_plugin
-
-async_load_plugin = vim.loop.new_async(vim.schedule_wrap(function()
-	colors.terminal_color()
-	async_load_plugin:close()
-end))
-
-function colors.colorscheme()
-	vim.api.nvim_command("hi clear")
-
-	vim.o.background = "#4b4b4b"
-	vim.o.termguicolors = true
-	vim.g.colors_name = "sainte-adresse"
-	async_load_plugin:send()
-end
-
 for group, opts in pairs(groups) do
 	vim.api.nvim_set_hl(0, group, opts)
 end
-
-colors.colorscheme()
-
-return colors
