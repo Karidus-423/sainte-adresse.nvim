@@ -1,5 +1,5 @@
 -- Inpired by Beach of Sainte Adresse by Claude Monet.
--- Carried by MariaSolOs
+
 -- Reset highlighting.
 vim.cmd.highlight("clear")
 if vim.fn.exists("syntax_on") then
@@ -8,28 +8,31 @@ end
 vim.o.termguicolors = true
 vim.g.colors_name = "sainte-adresse"
 
+
 local colors = {
-	bg = "#4b4b4b",
+	--bg = "#4f4f4f",
+	bg = "none",
 	bright_blue = "#6094d3",
-	bright_cyan = "#b3dcdd",
+	bright_cyan = "#97d9db",
 	bright_green = "#a5c38d",
 	bright_magenta = "#c3a1ce",
-	bright_red = "#ac6767",
+	bright_red = "#c77575",
 	bright_white = "#fafaf9",
 	bright_yellow = "#cabf44",
 	black = "#110f0f",
 	cyan = "#6eaeaf",
 	orange = "#b37937",
-	green = "#799363",
+	green = "#90bf69",
 	yellow = "#E8EDA2",
 	blue = "#1f518e",
 	cyan900 = "#3e5b5b",
 	orange100 = "#fac689",
 	purple = "#a780b3",
-	red = "#8d4f4f",
+	red = "#ac6767",
+	grey100 = "#cccccc",
 	grey = "#acafad",
-	white = "#F6F6F5",
 	grey900 = "#7e8180",
+	white = "#F6F6F5",
 	transparent_black = "#1E1F29",
 	transparent_blue = "#19272C",
 	transparent_green = "#22372c",
@@ -120,7 +123,7 @@ local groups = vim.tbl_extend("error", statusline_groups, {
 	Number = { fg = colors.orange },
 	Pmenu = { fg = colors.white, bg = colors.transparent_blue },
 	PmenuSbar = { bg = colors.transparent_blue },
-	PmenuSel = { fg = colors.cyan, bg = colors.selection },
+	PmenuSel = { fg = colors.cyan, bg = colors.grey900 },
 	PmenuThumb = { bg = colors.selection },
 	PreCondit = { fg = colors.cyan },
 	PreProc = { fg = colors.yellow },
@@ -139,7 +142,7 @@ local groups = vim.tbl_extend("error", statusline_groups, {
 	StatusLine = { fg = colors.white, bg = colors.transparent_black },
 	StorageClass = { fg = colors.orange100 },
 	Structure = { fg = colors.yellow },
-	Substitute = { fg = colors.orange, bg = colors.orange, bold = true },
+	Substitute = { fg = colors.grey100, bg = colors.orange, bold = true },
 	Title = { fg = colors.cyan },
 	Todo = { fg = colors.purple, bold = true, italic = true },
 	Type = { fg = colors.cyan },
@@ -150,6 +153,7 @@ local groups = vim.tbl_extend("error", statusline_groups, {
 	VisualNOS = { fg = colors.visual },
 	WarningMsg = { fg = colors.yellow },
 	WildMenu = { fg = colors.transparent_black, bg = colors.white },
+	NvimInternalError = { fg = colors.transparent_black, bg = colors.red },
 
 	-- TreeSitter.
 	["@annotation"] = { fg = colors.yellow },
@@ -161,7 +165,7 @@ local groups = vim.tbl_extend("error", statusline_groups, {
 	["@constant.builtin"] = { fg = colors.cyan },
 	["@constant.macro"] = { fg = colors.purple },
 	["@constructor"] = { fg = colors.yellow },
-	["@error"] = { fg = colors.red },
+	["@error"] = { fg = colors.bright_red },
 	["@exception"] = { fg = colors.purple },
 	["@field"] = { fg = colors.orange },
 	["@float"] = { fg = colors.bright_red },
@@ -169,7 +173,7 @@ local groups = vim.tbl_extend("error", statusline_groups, {
 	["@function.builtin"] = { fg = colors.cyan },
 	["@function.macro"] = { fg = colors.green },
 	["@include"] = { fg = colors.orange100 },
-	["@keyword"] = { fg = colors.orange100 },
+	["@keyword"] = { fg = colors.orange },
 	["@keyword.function"] = { fg = colors.cyan },
 	["@keyword.function.ruby"] = { fg = colors.orange100 },
 	["@keyword.operator"] = { fg = colors.orange100 },
@@ -334,6 +338,10 @@ local groups = vim.tbl_extend("error", statusline_groups, {
 	MsgArea = { fg = colors.cyan },
 	MsgSeparator = { fg = colors.cyan900 },
 
+	-- Notifications
+	MiniNotifyNormal = { bg = colors.grey100, fg = colors.blue },
+	MiniNotifyBorder = { bg = colors.grey100, fg = colors.blue, },
+
 	-- Winbar styling.
 	WinBar = { fg = colors.fg, bg = colors.transparent_black },
 	WinBarNC = { bg = colors.transparent_black },
@@ -344,7 +352,7 @@ local groups = vim.tbl_extend("error", statusline_groups, {
 	qfPath = { fg = colors.bright_blue },
 	qfPosition = { fg = colors.orange100, underline = true },
 	QuickFixLine = { italic = true, bg = colors.transparent_red },
-	BqfPreviewRange = { fg = colors.bg, bg = colors.bright_magenta },
+	BqfPreviewRange = { fg = colors.grey900, bg = colors.bright_magenta },
 
 	-- Gitsigns.
 	GitSignsAdd = { fg = colors.bright_green },
@@ -371,6 +379,7 @@ local groups = vim.tbl_extend("error", statusline_groups, {
 	-- Make these titles more visible.
 	MiniClueTitle = { bold = true, fg = colors.cyan },
 	MiniFilesTitleFocused = { bold = true, fg = colors.cyan },
+	MiniAnimateNormalFloat = { bold = true, fg = colors.grey100 },
 
 	-- Nicer yanky highlights.
 	YankyPut = { link = "Visual" },
@@ -393,6 +402,21 @@ local groups = vim.tbl_extend("error", statusline_groups, {
 
 	-- Overseeer.
 	OverseerComponent = { link = "@keyword" },
+
+	-- Neorg
+	["@neorg.markup.bold"] = { fg = colors.orange },
+
+	-- Markdown
+	["@markup.heading.1.markdown"] = { fg = colors.cyan },
+	["@markup.heading.2.markdown"] = { fg = colors.bright_cyan },
+	["@markup.heading.3.markdown"] = { fg = colors.green },
+	["@markup.heading.4.markdown"] = { fg = colors.bright_green },
+	["@markup.heading.5.markdown"] = { fg = colors.bright_yellow },
+	["@markup.heading.6.markdown"] = { fg = colors.yellow },
+	["@markup.italic.markdown_inline"] = { fg = colors.grey },
+	["@markup.strong.markdown_inline"] = { fg = colors.orange },
+	["@punctuation.special.markdown"] = { fg = colors.black },
+	["@markup.raw.block.markdown"] = { fg = colors.comment },
 })
 
 for group, opts in pairs(groups) do
